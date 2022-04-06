@@ -1,0 +1,33 @@
+name: LiveLikeHoneyBadger
+description: lorem ipsum
+
+# Change the seed until a million dollar collection is generated.
+seed: 222
+
+# Number of unique images you are going to create.
+number: 1000
+
+traits:
+  background:
+    category: Background
+    values:
+      blue_bgr:
+          name: Blue
+          prob: 0.28
+          src: img/backgrounds/gradient_blue.png
+      green_bgr:
+        name: Green
+        prob: 0.28
+        src: img/backgrounds/gradient_green.png
+      red_bgr:
+        name: Red
+        prob: 0.28
+        src: img/backgrounds/gradient_red.png
+      purple_bgr:
+        name: Purple
+        prob: 0.14
+        src: img/backgrounds/gradient_purple.png
+      pride_bgr:
+        name: Pride
+        prob: 0.02
+        src: img/backgrounds/pride.png

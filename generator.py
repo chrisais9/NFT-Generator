@@ -1,10 +1,15 @@
 from PIL import Image
 from image4layer import Image4Layer
+import yaml
+import random
 
 
 class Generator:
 
-    def load_traits(self):
+    def __init__(self, config):
+        self.config = config
+
+    def test(self):
         im1 = Image.open(f'traits/1.png').convert('RGBA')
         im2 = Image.open(f'traits/2.png').convert('RGBA')
         im3 = Image.open(f'traits/3.png').convert('RGBA')
@@ -29,9 +34,24 @@ class Generator:
 
         final.show()
 
+    def load_traits(self):
+        for idx, (trait_id, trait) in enumerate(self.config["traits"].items()):
+            items = trait["values"]
+            print("Category:", trait["category"])
+            for idx, (item, properties) in enumerate(items.items()):
+                print(idx)
+                print("item:", item)
+                print("properties:", properties)
+            print("\n")
+
 
 def main():
-    generator = Generator()
+    with open('config.yaml') as config:
+        config = yaml.load(config, Loader=yaml.FullLoader)
+
+    random.seed(config["seed"])
+
+    generator = Generator(config)
     generator.load_traits()
 
 
