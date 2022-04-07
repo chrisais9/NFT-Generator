@@ -26,9 +26,20 @@ class Generator:
 
         self.generate_all_trait_metadata()
 
+        self.generate_token_id()
+
         for trait in self.traits:
             image = self.generate_image(trait)
-            image.show()
+            image.save(f'./images/{trait["tokenId"]}.png')
+
+        for trait in self.traits:
+            token = {
+                "name": f'LLHB #{trait["tokenId"]}',
+                "image": f'{self.config["base_uri"]}',
+                "attributes": [{"trait_type": trait_type, "value": value} for trait_type, value in trait.items() if trait_type != "tokenId"]
+            }
+            with open(f'./metadata/{trait["tokenId"]}', 'w') as outfile:
+                json.dump(token, outfile, indent=4)
 
     def generate_traits(self):
         traits = []
@@ -66,15 +77,24 @@ class Generator:
         stack = Image.new('RGBA', (self.width, self.height))
 
         for category, name in trait.items():
+            # TODO: refactor
+            if category == "tokenId":
+                continue
             image_layer = Image.open(f'{self.config["traits"][category]["values"][name]["src"]}').convert('RGBA')
             stack = Image.alpha_composite(stack, image_layer)
 
-        filter = Image.open("image/filter.png").convert("RGBA")
+        filter = Image.open("layer/filter.png").convert("RGBA")
         filter.putalpha(int(256 * 0.3))
         stack = Image4Layer.pin_light(stack, filter)
 
         stack = stack.convert('RGB')
         return stack
+
+    def generate_token_id(self):
+        i = self.config["start"]
+        for item in self.traits:
+            item["tokenId"] = i
+            i += 1
 
 
 def main():

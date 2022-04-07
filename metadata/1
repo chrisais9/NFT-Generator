@@ -1,0 +1,38 @@
+{
+    "name": "LLHB #1",
+    "image": "database.com/",
+    "attributes": [
+        {
+            "trait_type": "background",
+            "value": "pink"
+        },
+        {
+            "trait_type": "body",
+            "value": "gray"
+        },
+        {
+            "trait_type": "wear",
+            "value": "check_honey_pink"
+        },
+        {
+            "trait_type": "face",
+            "value": "gray"
+        },
+        {
+            "trait_type": "headgear",
+            "value": "taxi"
+        },
+        {
+            "trait_type": "honey_bird",
+            "value": "propeller"
+        },
+        {
+            "trait_type": "eye",
+            "value": "heart"
+        },
+        {
+            "trait_type": "speech",
+            "value": "snake"
+        }
+    ]
+}

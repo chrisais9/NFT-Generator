@@ -1,5 +1,8 @@
 name: LiveLikeHoneyBadger
+
 description: lorem ipsum
+
+base_uri: database.com/
 
 # Change the seed until a million dollar collection is generated.
 seed: 222
@@ -9,58 +12,59 @@ number: 1
 
 start: 1
 
+
 traits:
   background:
     values:
       pink:
         name: Pink
         prob: 100
-        src: image/background/pink.png
+        src: layer/background/pink.png
 
   body:
     values:
       gray:
         name: Gray
         prob: 100
-        src: image/body/gray.png
+        src: layer/body/gray.png
 
   wear:
     values:
       check_honey_pink:
         name: Check Honey Pink
         prob: 100
-        src: image/wear/check_honey_pink.png
+        src: layer/wear/check_honey_pink.png
   face:
     values:
       gray:
         name: Gray
         prob: 100
-        src: image/face/gray.png
+        src: layer/face/gray.png
 
   headgear:
     values:
       taxi:
         name: Taxi
         prob: 100
-        src: image/headgear/taxi.png
+        src: layer/headgear/taxi.png
 
   honey_bird:
     values:
       propeller:
         name: Propeller
         prob: 100
-        src: image/honeybird/propeller.png
+        src: layer/honeybird/propeller.png
 
   eye:
     values:
       heart:
         name: Heart
         prob: 100
-        src: image/eye/heart.png
+        src: layer/eye/heart.png
 
   speech:
     values:
       snake:
         name: Snake
         prob: 100
-        src: image/speech/snake.png
+        src: layer/speech/snake.png
