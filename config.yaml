@@ -5,29 +5,62 @@ description: lorem ipsum
 seed: 222
 
 # Number of unique images you are going to create.
-number: 1000
+number: 1
+
+start: 1
 
 traits:
   background:
-    category: Background
     values:
-      blue_bgr:
-          name: Blue
-          prob: 0.28
-          src: img/backgrounds/gradient_blue.png
-      green_bgr:
-        name: Green
-        prob: 0.28
-        src: img/backgrounds/gradient_green.png
-      red_bgr:
-        name: Red
-        prob: 0.28
-        src: img/backgrounds/gradient_red.png
-      purple_bgr:
-        name: Purple
-        prob: 0.14
-        src: img/backgrounds/gradient_purple.png
-      pride_bgr:
-        name: Pride
-        prob: 0.02
-        src: img/backgrounds/pride.png
+      pink:
+        name: Pink
+        prob: 100
+        src: image/background/pink.png
+
+  body:
+    values:
+      gray:
+        name: Gray
+        prob: 100
+        src: image/body/gray.png
+
+  wear:
+    values:
+      check_honey_pink:
+        name: Check Honey Pink
+        prob: 100
+        src: image/wear/check_honey_pink.png
+  face:
+    values:
+      gray:
+        name: Gray
+        prob: 100
+        src: image/face/gray.png
+
+  headgear:
+    values:
+      taxi:
+        name: Taxi
+        prob: 100
+        src: image/headgear/taxi.png
+
+  honey_bird:
+    values:
+      propeller:
+        name: Propeller
+        prob: 100
+        src: image/honeybird/propeller.png
+
+  eye:
+    values:
+      heart:
+        name: Heart
+        prob: 100
+        src: image/eye/heart.png
+
+  speech:
+    values:
+      snake:
+        name: Snake
+        prob: 100
+        src: image/speech/snake.png
