@@ -1,8 +1,6 @@
 name: LiveLikeHoneyBadger
 
-description: lorem ipsum
-
-base_uri: database.com/
+base_uri: database.com
 
 # Change the seed until a million dollar collection is generated.
 seed: 222

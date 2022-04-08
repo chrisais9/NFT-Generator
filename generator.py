@@ -26,20 +26,17 @@ class Generator:
 
         self.generate_all_trait_metadata()
 
-        self.generate_token_id()
+        token_id = self.config["start"]
 
         for trait in self.traits:
             image = self.generate_image(trait)
-            image.save(f'./images/{trait["tokenId"]}.png')
+            image.save(f'./images/{token_id}.jpeg')
 
-        for trait in self.traits:
-            token = {
-                "name": f'LLHB #{trait["tokenId"]}',
-                "image": f'{self.config["base_uri"]}',
-                "attributes": [{"trait_type": trait_type, "value": value} for trait_type, value in trait.items() if trait_type != "tokenId"]
-            }
-            with open(f'./metadata/{trait["tokenId"]}', 'w') as outfile:
-                json.dump(token, outfile, indent=4)
+            token_metadata = self.generate_token_metadata(trait, token_id)
+            with open(f'./metadata/{token_id}', 'w') as outfile:
+                json.dump(token_metadata, outfile, indent=4)
+
+            token_id += 1
 
     def generate_traits(self):
         traits = []
@@ -77,9 +74,6 @@ class Generator:
         stack = Image.new('RGBA', (self.width, self.height))
 
         for category, name in trait.items():
-            # TODO: refactor
-            if category == "tokenId":
-                continue
             image_layer = Image.open(f'{self.config["traits"][category]["values"][name]["src"]}').convert('RGBA')
             stack = Image.alpha_composite(stack, image_layer)
 
@@ -90,11 +84,12 @@ class Generator:
         stack = stack.convert('RGB')
         return stack
 
-    def generate_token_id(self):
-        i = self.config["start"]
-        for item in self.traits:
-            item["tokenId"] = i
-            i += 1
+    def generate_token_metadata(self, trait, token_id):
+        return {
+            "name": f'{self.config["name"]} #{token_id}',
+            "image": f'{self.config["base_uri"]}/{token_id}',
+            "attributes": [{"trait_type": trait_type, "value": value} for trait_type, value in trait.items()]
+        }
 
 
 def main():
