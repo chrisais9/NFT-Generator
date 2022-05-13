@@ -1,5 +1,6 @@
 from PIL import Image
 from image4layer import Image4Layer
+import matplotlib.pyplot as plt
 import yaml
 import random
 import json
@@ -10,9 +11,10 @@ class Generator:
     def __init__(self, config):
         self.traits = []
         self.config = config
-        self.final_images = []
-        self.width = 2000
-        self.height = 2000
+        self.width = config["size"]["width"]
+        self.height = config["size"]["height"]
+
+        random.seed(config["seed"])
 
     def generate(self):
 
@@ -26,17 +28,33 @@ class Generator:
 
         self.generate_all_trait_metadata()
 
-        token_id = self.config["start"]
 
-        for trait in self.traits:
-            image = self.generate_image(trait)
-            image.save(f'./images/{token_id}.jpeg')
+        # token_id = self.config["start"]
+        #
+        # for trait in self.traits:
+        #     image = self.generate_image(trait)
+        #     image.save(f'./images/{token_id}.jpeg')
+        #
+        #     token_metadata = self.generate_token_metadata(trait, token_id)
+        #     with open(f'./metadata/{token_id}', 'w') as outfile:
+        #         json.dump(token_metadata, outfile, indent=4)
+        #
+        #     token_id += 1
 
-            token_metadata = self.generate_token_metadata(trait, token_id)
-            with open(f'./metadata/{token_id}', 'w') as outfile:
-                json.dump(token_metadata, outfile, indent=4)
+        traits_config = self.config["traits"]
+        for attribute in traits_config:
+            counts_dict = {k: 0 for k in traits_config[attribute].keys()}
+            for trait in self.traits:
+                counts_dict[trait[attribute]] = counts_dict.get(trait[attribute], 0) + 1
 
-            token_id += 1
+            labels, counts = zip(*sorted(counts_dict.items(), key=lambda x: x[1]))
+
+            fig, ax = plt.subplots(figsize=(12, 12), subplot_kw=dict(aspect="equal"))
+            ax.pie(counts, autopct='%.1f%%', labels=labels, startangle=90, radius=1.1)
+
+            ax.set_title(attribute)
+
+            plt.savefig(f"plot_{attribute}.png")
 
     def generate_traits(self):
         traits = []
@@ -52,8 +70,8 @@ class Generator:
         categories = list(traits.keys())
         for category in categories:
             trait[category] = random.choices(
-                [k for k in traits[category]["values"].keys()],
-                [v["prob"] for v in traits[category]["values"].values()]
+                [k for k in traits[category].keys()],
+                [v["prob"] for v in traits[category].values()]
             )[0]
 
         if trait in self.traits:
@@ -95,8 +113,6 @@ class Generator:
 def main():
     with open('config.yaml') as config:
         config = yaml.load(config, Loader=yaml.FullLoader)
-
-    # random.seed(config["seed"])
 
     generator = Generator(config)
     generator.generate()
