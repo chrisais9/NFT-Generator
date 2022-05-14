@@ -1,6 +1,10 @@
+import json
+
 from PIL import Image
 from image4layer import Image4Layer
 import yaml
+
+import metadata_generator
 import trait_generator
 
 
@@ -12,14 +16,17 @@ class Generator:
         self.width = config["size"]["width"]
         self.height = config["size"]["height"]
 
-        self.traitGenerator = trait_generator.TraitGenerator(config)
         self.traits = []
+        self.traitGenerator = trait_generator.TraitGenerator(config)
+
+        self.metadataGenerator = metadata_generator.MetadataGenerator(config)
 
     def generate(self):
 
         self.traits = self.traitGenerator.generate()
-
         self.traitGenerator.plot_generated_traits()
+
+        self.metadataGenerator.generate(self.traits)
 
         # token_id = self.config["start"]
         #
@@ -32,6 +39,7 @@ class Generator:
         #         json.dump(token_metadata, outfile, indent=4)
         #
         #     token_id += 1
+
 
     def generate_image(self, trait):
         stack = Image.new('RGBA', (self.width, self.height))
@@ -46,13 +54,6 @@ class Generator:
 
         stack = stack.convert('RGB')
         return stack
-
-    def generate_token_metadata(self, trait, token_id):
-        return {
-            "name": f'{self.config["name"]} #{token_id}',
-            "image": f'{self.config["base_uri"]}/{token_id}',
-            "attributes": [{"trait_type": trait_type, "value": value} for trait_type, value in trait.items()]
-        }
 
 
 def main():
