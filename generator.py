@@ -1,33 +1,25 @@
 from PIL import Image
 from image4layer import Image4Layer
-import matplotlib.pyplot as plt
 import yaml
-import random
-import json
+import trait_generator
 
 
 class Generator:
 
     def __init__(self, config):
-        self.traits = []
+
         self.config = config
         self.width = config["size"]["width"]
         self.height = config["size"]["height"]
 
-        random.seed(config["seed"])
+        self.traitGenerator = trait_generator.TraitGenerator(config)
+        self.traits = []
 
     def generate(self):
 
-        self.traits = self.generate_traits()
+        self.traits = self.traitGenerator.generate()
 
-        if self.is_all_trait_unique(self.traits):
-            print("Confirmed that every single trait is unique")
-        else:
-            print("Error! There are duplicated trait")
-            return
-
-        self.generate_all_trait_metadata()
-
+        self.traitGenerator.plot_generated_traits()
 
         # token_id = self.config["start"]
         #
@@ -40,53 +32,6 @@ class Generator:
         #         json.dump(token_metadata, outfile, indent=4)
         #
         #     token_id += 1
-
-        traits_config = self.config["traits"]
-        for attribute in traits_config:
-            counts_dict = {k: 0 for k in traits_config[attribute].keys()}
-            for trait in self.traits:
-                counts_dict[trait[attribute]] = counts_dict.get(trait[attribute], 0) + 1
-
-            labels, counts = zip(*sorted(counts_dict.items(), key=lambda x: x[1]))
-
-            fig, ax = plt.subplots(figsize=(12, 12), subplot_kw=dict(aspect="equal"))
-            ax.pie(counts, autopct='%.1f%%', labels=labels, startangle=90, radius=1.1)
-
-            ax.set_title(attribute)
-
-            plt.savefig(f"plot_{attribute}.png")
-
-    def generate_traits(self):
-        traits = []
-        for i in range(self.config["number"]):
-            new_trait = self.new_random_unique_trait()
-            traits.append(new_trait)
-        return traits
-
-    def new_random_unique_trait(self):
-        trait = {}
-
-        traits = self.config["traits"]
-        categories = list(traits.keys())
-        for category in categories:
-            trait[category] = random.choices(
-                [k for k in traits[category].keys()],
-                [v["prob"] for v in traits[category].values()]
-            )[0]
-
-        if trait in self.traits:
-            return self.new_random_unique_trait()
-        else:
-            return trait
-
-    def is_all_trait_unique(self, traits):
-        seen = list()
-        return not any(i in seen or seen.append(i) for i in traits)
-
-    def generate_all_trait_metadata(self):
-        METADATA_FILE_NAME = './metadata/all-traits.json'
-        with open(METADATA_FILE_NAME, 'w') as outfile:
-            json.dump(self.traits, outfile, indent=4)
 
     def generate_image(self, trait):
         stack = Image.new('RGBA', (self.width, self.height))
