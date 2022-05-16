@@ -12,7 +12,7 @@ class Uploader:
     def upload_directory(self, directory):
 
         files = []
-        ipfs_url = f"${self.base_url}/pinFileToIPFS"
+        ipfs_url = f"{self.base_url}/pinFileToIPFS"
         headers = {
             'pinata_api_key': getenv('PINATA_API_KEY'),
             'pinata_secret_api_key': getenv('PINATA_SECRET_KEY')

@@ -25,19 +25,10 @@ class TraitGenerator:
             print("Error! There are duplicated trait")
             return
 
-        print("======= Save All Traits Start =======")
-        self._generate_all_trait_metadata()
-        print("saved to metadata/all-traits.json")
-
         return self.traits
 
     def _validate(self):
         return self._is_all_trait_unique(self.traits)
-
-    def _generate_all_trait_metadata(self):
-        METADATA_FILE_NAME = './metadata/all-traits.json'
-        with open(METADATA_FILE_NAME, 'w') as outfile:
-            json.dump(self.traits, outfile, indent=4)
 
     def _new_random_unique_trait(self):
         trait = {}
