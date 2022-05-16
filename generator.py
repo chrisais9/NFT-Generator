@@ -9,7 +9,6 @@ import trait_generator
 class Generator:
 
     def __init__(self, config):
-
         self.config = config
         self.width = config["size"]["width"]
         self.height = config["size"]["height"]
@@ -20,7 +19,6 @@ class Generator:
         self.metadataGenerator = metadata_generator.MetadataGenerator(config)
 
     def generate(self):
-
         self.traits = self.traitGenerator.generate()
         self.traitGenerator.plot_generated_traits()
 
@@ -37,7 +35,6 @@ class Generator:
         #         json.dump(token_metadata, outfile, indent=4)
         #
         #     token_id += 1
-
 
     def generate_image(self, trait):
         stack = Image.new('RGBA', (self.width, self.height))
