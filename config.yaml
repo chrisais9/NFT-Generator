@@ -15,6 +15,25 @@ size:
   width: 2000
   height: 2000
 
+# Z-index order of image from bottom to top
+order:
+  - background
+  - h_effect
+  - h_faceAccessories
+  - type
+  - eyes
+  - mouth
+  - ear
+  - neck
+  - mask
+  - hair
+  - faceAccesories
+  - h_hair
+  - clothing
+  - offhand
+  - headgear
+  - effect
+
 traits:
   background:
     red:
@@ -39,13 +58,13 @@ traits:
       prob: 10
 
   type:
-    XX:
+    xx:
       prob: 25
-    XXB:
+    xxb:
       prob: 25
-    XY:
+    xy:
       prob: 25
-    XYB:
+    xyb:
       prob: 25
   eyes:
     motionless:
@@ -123,7 +142,7 @@ traits:
   hair:
     dread:
       prob: 40
-    short cut:
+    short_cut:
       prob: 30
     normal:
       prob: 10
@@ -131,8 +150,8 @@ traits:
       prob: 10
     topknot:
       prob: 10
-  hidden hair:
-    short cut:
+  h_hair:
+    short_cut:
       prob: 40
     normal:
       prob: 20
@@ -221,7 +240,7 @@ traits:
   effect:
     smoke:
       prob: 30
-    light smoke:
+    light_smoke:
       prob: 30
     neon:
       prob: 10

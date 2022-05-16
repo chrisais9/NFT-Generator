@@ -302,6 +302,8 @@ cython_debug/
 # Local
 metadata/*
 plot/*
+layer/*.png
+layer/**/*.png
 
 
 # PyCharm

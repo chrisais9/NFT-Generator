@@ -1,5 +1,6 @@
 import yaml
 
+import image_generator
 import metadata_generator
 import trait_generator
 
@@ -14,11 +15,31 @@ class Generator:
 
         self.metadataGenerator = metadata_generator.MetadataGenerator(config)
 
-    def generate(self):
-        self.traits = self.traitGenerator.generate()
-        self.traitGenerator.plot_generated_traits()
+        self.imageGenerator = image_generator.ImageGenerator(self.config)
 
-        self.metadataGenerator.generate(self.traits)
+    def generate(self):
+        # self.traits = self.traitGenerator.generate()
+        # self.traitGenerator.plot_generated_traits()
+
+        temp_trait = {
+            'background': 'blue',
+            'type': 'xx',
+            'eyes': 'motionless',
+            'mouth': 'motionless',
+            'ear': 'small_earrings',
+            'neck': 'headphone',
+            'mask': 'anti_mask',
+            'hair': 'dread',
+            'h_hair': 'short_cut',
+            'faceAccessories': 'gentle_monster_glasses',
+            'clothing': 'jacket',
+            'offhand': 'cigarette',
+            'headgear': 'none',
+            'effect': 'smoke'
+        }
+        self.imageGenerator.generate_image(temp_trait)
+
+        # self.metadataGenerator.generate(self.traits)
 
         # token_id = self.config["start"]
         #
@@ -42,4 +63,6 @@ def main():
 
 
 if __name__ == '__main__':
+    # imageGenerator = image_generator.ImageGenerator()
+    # print(path.exists("layerd"))
     main()
