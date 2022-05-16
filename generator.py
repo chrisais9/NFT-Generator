@@ -1,5 +1,3 @@
-import json
-
 from PIL import Image
 from image4layer import Image4Layer
 import yaml

@@ -299,8 +299,9 @@ dmypy.json
 cython_debug/
 
 
-metadata
-plot
+# Local
+metadata/*
+plot/*
 
 
 # PyCharm
