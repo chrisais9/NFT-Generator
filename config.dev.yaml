@@ -1,0 +1,169 @@
+title: Meta Human
+description: Meta Human Always Fancy
+
+base_uri: https://ipfs.io/ipfs/Qme42XjH7tBpvqyCqQFoa6UmbXehnRbwk5NDVATCSVQvf3
+
+# Change the seed until a million dollar collection is generated.
+seed: 888
+
+# Number of unique images you are going to create.
+number: 30
+
+start: 1
+
+size:
+  width: 2000
+  height: 2000
+
+# Z-index order of image from bottom to top
+order:
+  - background
+  - h_effect
+  - h_faceAccessories
+  - type
+  - eyes
+  - mouth
+  - ear
+  - neck
+  - mask
+  - hair
+  - h_headgear_hair
+  - faceAccessories
+  - h_hair
+  - clothing
+  - offhand
+  - headgear
+  - effect
+
+traits:
+  background:
+    gray:
+      name: Gray
+      prob: 40
+    sky_blue:
+      name: Sky Blue
+      prob: 30
+    blue:
+      name: Blue
+      prob: 20
+    purple:
+      name: Purple
+      prob: 10
+
+  type:
+    xx:
+      name: XX
+      prob: 20
+    xx_brown:
+      name: XX Brown
+      prob: 20
+    xx_diamond:
+      name: XX Diamond
+      prob: 10
+    xy:
+      name: XY
+      prob: 20
+    xy_brown:
+      name: XY Brown
+      prob: 20
+    xy_diamond:
+      name: XY Diamond
+      prob: 10
+
+  eyes:
+    emotionless_a:
+      name: Emotionless A
+      prob: 50
+    emotionless_b:
+      name: Emotionless B
+      prob: 30
+    emotionless_c:
+      name: Emotionless C
+      prob: 20
+
+  mouth:
+    simple:
+      name: Simple
+      prob: 50
+
+  ear:
+    earrings:
+      name: Earrings
+      prob: 50
+    none:
+      name: None
+      prob: 50
+
+  neck:
+    chocker:
+      name: Chocker
+      prob: 50
+    none:
+      name: None
+      prob: 50
+
+  mask:
+    meta_mask:
+      name: Meta Mask
+      prob: 30
+    none:
+      name: None
+      prob: 50
+
+  hair:
+    wave:
+      name: Wave
+      prob: 100
+
+  h_headgear_hair:
+    wave:
+      name: Wave
+      prob: 100
+
+  faceAccessories:
+    plastic_glasses:
+      name: Plastice Glasses
+      prob: 50
+    none:
+      name: None
+      prob: 50
+
+  h_hair:
+    wave:
+      name: Wave
+      prob: 100
+
+  clothing:
+    normal:
+      name: Normal
+      prob: 100
+
+  offhand:
+    cigarette:
+      name: Cigarette
+      prob: 40
+    bat:
+      name: Bat
+      prob: 30
+    meta_cat:
+      name: Meta Cat
+      prob: 20
+    none:
+      name: None
+      prob: 10
+
+  headgear:
+    cap:
+      name: Cap
+      prob: 50
+    none:
+      name: None
+      prob: 50
+
+  effect:
+    smoke:
+      name: Smoke
+      prob: 30
+    none:
+      name: None
+      prob: 70

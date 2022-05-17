@@ -9,9 +9,6 @@ class MetadataGenerator:
     def generate(self, traits):
         print("======= Save Token Metadata Start =======")
         for trait in traits:
-            # image = self.generate_image(trait)
-            # image.save(f'./images/{token_id}.jpeg')
-
             token_metadata = self.generate_token_metadata(trait, self.token_id)
             with open(f'./metadata/{self.token_id}', 'w') as outfile:
                 json.dump(token_metadata, outfile, indent=4)

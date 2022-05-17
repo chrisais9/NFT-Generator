@@ -27,7 +27,8 @@ order:
   - neck
   - mask
   - hair
-  - faceAccesories
+  - h_headgear_hair
+  - faceAccessories
   - h_hair
   - clothing
   - offhand
@@ -150,15 +151,11 @@ traits:
       prob: 10
     topknot:
       prob: 10
-  h_hair:
-    short_cut:
-      prob: 40
-    normal:
-      prob: 20
-    bald:
-      prob: 20
-    topknot:
-      prob: 20
+  h_headgear_hair:
+    wave:
+      name: Wave
+      prob: 100
+
   faceAccessories:
     gentle_monster_glasses:
       prob: 20
@@ -172,6 +169,17 @@ traits:
       prob: 10
     none:
       prob: 10
+
+  h_hair:
+    short_cut:
+      prob: 40
+    normal:
+      prob: 20
+    bald:
+      prob: 20
+    topknot:
+      prob: 20
+
   clothing:
     t-shirt:
       prob: 30

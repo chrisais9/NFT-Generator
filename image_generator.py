@@ -1,7 +1,9 @@
+import os
 import pathlib
+import glob
+import shutil
 
 from PIL import Image
-from image4layer import Image4Layer
 
 
 class ImageGenerator:
@@ -15,38 +17,55 @@ class ImageGenerator:
 
         image_path = dict.fromkeys(self.config["order"])
 
-        human_type = trait["type"].split("-", 1)[0]
+        human_type = trait["type"].split("_", 1)[0]
 
-        for key, val in trait.items():
-            if pathlib.Path(f"layer/{key}/{human_type}/{val}.png").exists():  # parse path by type
-                image_path[key] = f"layer/h_{key}/{human_type}/{val}.png"
+        for trait_name, value in trait.items():
+            if pathlib.Path(f"layer/{trait_name}/{human_type}/{value}.png").exists():  # parse path by type
+                image_path[trait_name] = f"layer/{trait_name}/{human_type}/{value}.png"
+                if f"h_{trait_name}" in image_path:
+                    image_path[f"h_{trait_name}"] = f"layer/{trait_name}/{human_type}/{value}.png"
+            elif pathlib.Path(
+                    f"layer/{trait_name}/common/{value}.png").exists():  # if type doesn't exist, get path from common
+                image_path[trait_name] = f"layer/{trait_name}/common/{value}.png"
 
-                if f"h_{key}" in image_path:
-                    image_path[f"h_{key}"] = f"layer/{key}/{human_type}/{val}.png"
-            elif pathlib.Path(f"layer/{key}/common/{val}.png").exists():  # if type doesn't exist, get path from common
-                image_path[key] = f"layer/{key}/common/{val}.png"
-
-                if f"h_{key}" in image_path:
-                    image_path[f"h_{key}"] = f"layer/h_{key}/common/{val}.png"
+                if f"h_{trait_name}" in image_path:
+                    image_path[f"h_{trait_name}"] = f"layer/h_{trait_name}/common/{value}.png"
             else:  # error
-                print(key, val, " no")
+                print(trait_name, human_type, value, " no")
 
         return image_path
 
-    def generate_image(self, trait):
+    def merge_image_layer(self, trait):
+        image_layer_path = self.parse_image_directory(trait)
 
-        print(trait)
-        image_path = self.parse_image_directory(trait)
-        print(image_path)
-        # stack = Image.new('RGBA', (self.width, self.height))
-        #
-        # for category, name in trait.items():
-        #     image_layer = Image.open(f'{self.config["traits"][category]["values"][name]["src"]}').convert('RGBA')
-        #     stack = Image.alpha_composite(stack, image_layer)
-        #
-        # filter = Image.open("layer/filter.png").convert("RGBA")
-        # filter.putalpha(int(256 * 0.3))
-        # stack = Image4Layer.pin_light(stack, filter)
-        #
-        # stack = stack.convert('RGB')
-        # return stack
+        stack = Image.new('RGBA', (self.width, self.height))
+
+        for layer, path in image_layer_path.items():
+            if layer == "hair" or layer == "h_hair":
+                if trait["headgear"] == "none":
+                    image_layer = Image.open(path).convert('RGBA')
+                    stack = Image.alpha_composite(stack, image_layer)
+            elif layer == "h_headgear_hair":
+                if trait["headgear"] != "none":
+                    image_layer = Image.open(path).convert('RGBA')
+                    stack = Image.alpha_composite(stack, image_layer)
+            else:
+                image_layer = Image.open(path).convert('RGBA')
+                stack = Image.alpha_composite(stack, image_layer)
+
+        stack = stack.convert('RGB')
+        return stack
+
+    def generate(self, traits):
+        token_id = self.config["start"]
+
+        if pathlib.Path("./images").exists():
+            shutil.rmtree("./images")
+        os.mkdir("./images")
+
+        for trait in traits:
+            print(token_id, trait)
+            image = self.merge_image_layer(trait)
+            image.save(f'./images/{token_id}.jpeg')
+
+            token_id += 1
