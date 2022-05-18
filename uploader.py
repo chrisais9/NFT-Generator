@@ -1,6 +1,9 @@
+import json
 from os import walk, path, sep, getenv
 from requests import Session, Request
 from dotenv import load_dotenv
+import os
+import glob
 
 
 class Uploader:
@@ -36,7 +39,18 @@ class Uploader:
 
         return response
 
+    def replace_base_uri(self, uri):
+        folder_path = './metadata'
+        for filename in glob.glob(os.path.join(folder_path, '*')):
+            if filename != "./metadata/all-traits.json":
+                with open(filename, 'r') as f:
+                    metadata = json.load(f)
+                print(type(metadata))
+                print(metadata["image"])
+
 
 if __name__ == '__main__':
+
     uploader = Uploader()
-    uploader.upload_directory("plot")
+    uploader.replace_base_uri()
+    # uploader.upload_directory("plot")
