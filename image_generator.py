@@ -62,9 +62,12 @@ class ImageGenerator:
             shutil.rmtree("./images")
         os.mkdir("./images")
 
+        print("======= Generate Images Start =======")
+
         for trait in traits:
-            print(token_id, trait)
+            print("generating", token_id, trait)
             image = self.merge_image_layer(trait)
             image.save(f'./images/{token_id}.jpeg')
+            print(f"saved {token_id}")
 
             token_id += 1
