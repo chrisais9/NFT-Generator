@@ -1,6 +1,5 @@
 import os
 import pathlib
-import glob
 import shutil
 
 from PIL import Image

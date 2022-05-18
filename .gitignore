@@ -304,6 +304,7 @@ metadata/*
 plot/*
 layer/*.png
 layer/**/*.png
+images/*
 
 
 # PyCharm
