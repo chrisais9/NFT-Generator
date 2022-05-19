@@ -9,8 +9,6 @@ seed: 888
 # Number of unique images you are going to create.
 number: 10
 
-start: 1
-
 size:
   width: 2000
   height: 2000
@@ -51,24 +49,15 @@ traits:
       prob: 10
 
   type:
-    xx:
-      name: XX
-      prob: 20
-    xx_brown:
-      name: XX Brown
-      prob: 20
-    xx_diamond:
-      name: XX Diamond
-      prob: 10
     xy:
       name: XY
-      prob: 20
+      prob: 40
     xy_brown:
       name: XY Brown
-      prob: 20
+      prob: 40
     xy_diamond:
       name: XY Diamond
-      prob: 10
+      prob: 20
 
   eyes:
     emotionless_a:
@@ -95,12 +84,9 @@ traits:
       prob: 50
 
   neck:
-    chocker:
-      name: Chocker
-      prob: 50
     none:
       name: None
-      prob: 50
+      prob: 100
 
   mask:
     meta_mask:

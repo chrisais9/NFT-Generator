@@ -56,15 +56,9 @@ class ImageGenerator:
         return stack
 
     def generate(self, traits):
-        token_id = self.config["start"]
-
-        # TODO: remove later
-        if pathlib.Path("./images").exists():
-            shutil.rmtree("./images")
-        os.mkdir("./images")
-
         print("======= Generate Images Start =======")
 
+        token_id = 1
         for trait in traits:
             print("generating", token_id, trait)
             image = self.merge_image_layer(trait)

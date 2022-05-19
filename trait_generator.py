@@ -1,7 +1,4 @@
-import json
 import random
-
-from matplotlib import pyplot as plt
 
 
 class TraitGenerator:
@@ -49,19 +46,3 @@ class TraitGenerator:
     def _is_all_trait_unique(self, traits):
         seen = list()
         return not any(i in seen or seen.append(i) for i in traits)
-
-    def plot_generated_traits(self):
-        traits_config = self.config["traits"]
-        for attribute in traits_config:
-            counts_dict = {k: 0 for k in traits_config[attribute].keys()}
-            for trait in self.traits:
-                counts_dict[trait[attribute]] = counts_dict.get(trait[attribute], 0) + 1
-
-            labels, counts = zip(*sorted(counts_dict.items(), key=lambda x: x[1]))
-
-            fig, ax = plt.subplots(figsize=(12, 12), subplot_kw=dict(aspect="equal"))
-            ax.pie(counts, autopct='%.1f%%', labels=labels, startangle=90, radius=1.1)
-
-            ax.set_title(attribute)
-
-            plt.savefig(f"plot/plot_{attribute}.png")
