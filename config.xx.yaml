@@ -1,37 +1,5 @@
-title: Meta Human
-description: Meta Human Always Fancy
-
-base_uri: https://ipfs.io/ipfs/cid
-
-# Change the seed until a million dollar collection is generated.
-seed: 888
-
 # Number of unique images you are going to create.
 number: 10
-
-size:
-  width: 2000
-  height: 2000
-
-# Z-index order of image from bottom to top
-order:
-  - background
-  - h_effect
-  - h_faceAccessories
-  - type
-  - eyes
-  - mouth
-  - ear
-  - neck
-  - mask
-  - hair
-  - h_headgear_hair
-  - faceAccessories
-  - h_hair
-  - clothing
-  - offhand
-  - headgear
-  - effect
 
 traits:
   background:

@@ -9,29 +9,47 @@ from metadata_generator import MetadataGenerator
 class Generator:
 
     def __init__(self):
+
+        with open('config.yaml') as config:
+            self.config = yaml.load(config, Loader=yaml.FullLoader)
+
         with open('config.xx.yaml') as config:
             self.config_xx = yaml.load(config, Loader=yaml.FullLoader)
 
-        with open('config.xx.yaml') as config:
+        with open('config.xy.yaml') as config:
             self.config_xy = yaml.load(config, Loader=yaml.FullLoader)
 
+
+    def is_every_trait_unique(self, traits):
+        seen = list()
+        return not any(i in seen or seen.append(i) for i in traits)
+
     def generate(self):
+        print("======= Generate Traits XX Start =======")
         trait_generator_xx = TraitGenerator(self.config_xx)
         traits_xx = trait_generator_xx.generate()
 
+        print("======= Generate Traits XY Start =======")
         trait_generator_xy = TraitGenerator(self.config_xy)
         traits_xy = trait_generator_xy.generate()
 
         traits = traits_xx + traits_xy
         random.shuffle(traits)
 
+        print("======= Validation Traits Start =======")
+        if self.is_every_trait_unique(traits):
+            print("Confirmed that every single trait is unique")
+        else:
+            print("Error! There are duplicated trait")
+            return
+
         plot_generated_traits("xx", self.config_xx, traits_xx)
         plot_generated_traits("xy", self.config_xy, traits_xy)
 
-        metadata_generator = MetadataGenerator(self.config_xx)
+        metadata_generator = MetadataGenerator(self.config)
         metadata_generator.generate(traits)
 
-        image_generator = ImageGenerator(self.config_xx)
+        image_generator = ImageGenerator(self.config)
         image_generator.generate(traits)
 
         # uploader = Uploader()
