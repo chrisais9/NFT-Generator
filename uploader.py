@@ -1,4 +1,5 @@
 import json
+from urllib.parse import urlparse, urlunparse
 from os import walk, path, sep, getenv
 from requests import Session, Request
 from dotenv import load_dotenv
@@ -35,22 +36,37 @@ class Uploader:
         ).prepare()
         response = Session().send(request)
 
-        print(response.json())
+        return response.json()["IpfsHash"]
 
-        return response
-
-    def replace_base_uri(self, uri):
+    def replace_base_uri(self, cid):
         folder_path = './metadata'
         for filename in glob.glob(os.path.join(folder_path, '*')):
             if filename != "./metadata/all-traits.json":
                 with open(filename, 'r') as f:
                     metadata = json.load(f)
-                print(type(metadata))
-                print(metadata["image"])
+                image_url = urlparse(metadata["image"])
+                token_id = image_url.path.split("/")[-1]
+
+                metadata["image"] = urlunparse(image_url._replace(path=f"{cid}/{token_id}.jpeg"))
+                with open(filename, 'w') as outfile:
+                    json.dump(metadata, outfile, indent=4)
+
+    def upload(self):
+        print("======= Upload To IPFS Start =======")
+
+        print("uploading images from ./images")
+        image_cid = self.upload_directory("./images")
+        print("image uploaded to:", image_cid)
+
+        print("replacing images from ./images")
+        self.replace_base_uri(image_cid)
+
+        print("uploading metadata from ./metadata")
+        metadata_cid = self.upload_directory("./metadata")
+        print("metadata uploaded to:", metadata_cid)
 
 
 if __name__ == '__main__':
 
     uploader = Uploader()
-    uploader.replace_base_uri()
-    # uploader.upload_directory("plot")
+    uploader.upload()

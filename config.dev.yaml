@@ -7,7 +7,7 @@ base_uri: https://ipfs.io/ipfs/Qme42XjH7tBpvqyCqQFoa6UmbXehnRbwk5NDVATCSVQvf3
 seed: 888
 
 # Number of unique images you are going to create.
-number: 30
+number: 10
 
 start: 1
 
