@@ -6,7 +6,6 @@ class MetadataGenerator:
         self.config = config
 
     def generate(self, traits):
-        print("======= Save Token Metadata Start =======")
 
         token_id = 1
         for trait in traits:

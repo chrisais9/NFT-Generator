@@ -52,7 +52,6 @@ class Uploader:
                     json.dump(metadata, outfile, indent=4)
 
     def upload(self):
-        print("======= Upload To IPFS Start =======")
 
         print("uploading images from ./images")
         image_cid = self.upload_directory("./images")

@@ -54,7 +54,6 @@ class ImageGenerator:
         return stack
 
     def generate(self, traits):
-        print("======= Generate Images Start =======")
 
         token_id = 1
         for trait in traits:
