@@ -58,6 +58,7 @@ class ImageGenerator:
     def generate(self, traits):
         token_id = self.config["start"]
 
+        # TODO: remove later
         if pathlib.Path("./images").exists():
             shutil.rmtree("./images")
         os.mkdir("./images")

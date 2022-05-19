@@ -16,12 +16,6 @@ class MetadataGenerator:
 
             self.token_id += 1
 
-        print("======= Save All Traits Metadata Start =======")
-        METADATA_FILE_NAME = './metadata/all-traits.json'
-        with open(METADATA_FILE_NAME, 'w') as outfile:
-            json.dump(traits, outfile, indent=4)
-        print(f"saved to {METADATA_FILE_NAME}")
-
     def generate_token_metadata(self, trait, token_id):
         return {
             "name": f'{self.config["title"]} #{token_id}',
