@@ -30,17 +30,41 @@ traits:
   eyes:
     emotionless_a:
       name: Emotionless A
-      prob: 50
+      prob: 10
     emotionless_b:
       name: Emotionless B
-      prob: 30
+      prob: 10
     emotionless_c:
       name: Emotionless C
-      prob: 20
+      prob: 10
+    dot:
+      name: Dot
+      prob: 10
+    god:
+      name: God
+      prob: 10
+    odd_eye:
+      name: Odd Eye
+      prob: 10
+    closed:
+      name: Closed
+      prob: 10
+    looking_a:
+      name: Looking A
+      prob: 10
+    wink:
+      name: Wink
+      prob: 10
+    miso:
+      name: Miso
+      prob: 10
 
   mouth:
     simple:
       name: Simple
+      prob: 50
+    miso:
+      name: Miso
       prob: 50
 
   ear:
@@ -93,7 +117,13 @@ traits:
   clothing:
     normal:
       name: Normal
-      prob: 100
+      prob: 40
+    hanbok:
+      name: Hanbok
+      prob: 30
+    gray:
+      name: Hanbok
+      prob: 30
 
   offhand:
     cigarette:

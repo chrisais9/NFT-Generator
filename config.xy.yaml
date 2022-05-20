@@ -28,20 +28,64 @@ traits:
       prob: 20
 
   eyes:
+    angry:
+      name: Angry
+      prob: 10
+    closed:
+      name: Closed
+      prob: 10
+    dot:
+      name: Dot
+      prob: 10
+    dot_long:
+      name: Dot Long
+      prob: 7
     emotionless_a:
       name: Emotionless A
-      prob: 50
+      prob: 7
     emotionless_b:
       name: Emotionless B
-      prob: 30
+      prob: 7
     emotionless_c:
       name: Emotionless C
-      prob: 20
+      prob: 7
+    god:
+      name: God
+      prob: 7
+    huh:
+      name: Huh
+      prob: 7
+    looking_a:
+      name: Looking A
+      prob: 7
+    looking_b:
+      name: Looking B
+      prob: 7
+    odd_eye:
+      name: Odd Eye
+      prob: 7
+    scar:
+      name: Scar
+      prob: 7
 
   mouth:
     simple:
       name: Simple
-      prob: 50
+      prob: 20
+    bite:
+      name: Bite
+      prob: 20
+    laugh:
+      name: Laugh
+      prob: 20
+    miso_light:
+      name: Miso Light
+      prob: 20
+    scar:
+      name: Scar
+      prob: 20
+
+
 
   ear:
     earrings:
@@ -88,9 +132,12 @@ traits:
       prob: 100
 
   clothing:
-    normal:
+    red:
       name: Normal
-      prob: 100
+      prob: 50
+    blue:
+      name: Blue
+      prob: 50
 
   offhand:
     cigarette:
