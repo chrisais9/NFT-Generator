@@ -6,9 +6,6 @@ base_uri: https://ipfs.io/ipfs/Qme42XjH7tBpvqyCqQFoa6UmbXehnRbwk5NDVATCSVQvf3
 # Change the seed until a million dollar collection is generated.
 seed: 888
 
-# Number of unique images you are going to create.
-number: 10000
-
 start: 1
 
 size:

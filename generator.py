@@ -19,6 +19,8 @@ class Generator:
         with open('config.xy.yaml') as config:
             self.config_xy = yaml.load(config, Loader=yaml.FullLoader)
 
+        random.seed(self.config["seed"])
+
     @staticmethod
     def is_every_trait_unique(traits):
         seen = list()

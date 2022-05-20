@@ -6,8 +6,6 @@ class TraitGenerator:
         self.traits = []
         self.config = config
 
-        # random.seed(config["seed"])
-
     def generate(self):
         for i in range(self.config["number"]):
             print(f"generate {i}")
