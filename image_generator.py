@@ -50,6 +50,10 @@ class ImageGenerator:
                 image_layer = Image.open(path).convert('RGBA')
                 stack = Image.alpha_composite(stack, image_layer)
 
+        filter = Image.open(image_layer_path["background"]).convert('RGBA')
+        filter.putalpha(filter.getchannel('A').point(lambda x: x * 0.15))
+        stack = Image.alpha_composite(stack, filter)
+
         stack = stack.convert('RGB')
         return stack
 
