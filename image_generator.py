@@ -1,6 +1,7 @@
 import pathlib
-
 from PIL import Image
+import multiprocessing
+from multiprocessing import Pool
 
 
 class ImageGenerator:
@@ -39,6 +40,7 @@ class ImageGenerator:
         return image_path
 
     def merge_image_layer(self, trait):
+        print(f"merge {trait}")
         image_layer_path = self.parse_image_directory(trait)
 
         stack = Image.new('RGBA', (self.width, self.height))
@@ -64,11 +66,16 @@ class ImageGenerator:
         return stack
 
     def generate(self, traits):
+        print(f"multi threading with {multiprocessing.cpu_count()} CPUs")
+        pool = Pool(processes=multiprocessing.cpu_count())
+        images = pool.map(self.merge_image_layer, traits)
+        pool.close()
+        pool.join()
+
+        print("merge images done")
 
         token_id = 1
-        for trait in traits:
-            print("generating", token_id, trait)
-            image = self.merge_image_layer(trait)
+        for image in images:
             image.save(f'./images/{token_id}.jpeg')
             print(f"saved {token_id}")
 

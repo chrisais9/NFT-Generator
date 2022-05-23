@@ -71,10 +71,10 @@ class Generator:
             return
         self.perfLogger.log()
 
-        self.perfLogger.start("Generate Plots")
-        Generator.plot_generated_traits("xx", self.config_xx, traits_xx)
-        Generator.plot_generated_traits("xy", self.config_xy, traits_xy)
-        self.perfLogger.log()
+        # self.perfLogger.start("Generate Plots")
+        # Generator.plot_generated_traits("xx", self.config_xx, traits_xx)
+        # Generator.plot_generated_traits("xy", self.config_xy, traits_xy)
+        # self.perfLogger.log()
 
         self.perfLogger.start("Save Token Metadata")
         metadata_generator = MetadataGenerator(self.config)
