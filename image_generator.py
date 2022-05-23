@@ -14,21 +14,27 @@ class ImageGenerator:
 
         image_path = dict.fromkeys(self.config["order"])
 
-        human_type = trait["type"].split("_", 1)[0]
+        full_type = trait["type"]
+        gender_type = full_type.split("_", 1)[0]
 
         for trait_name, value in trait.items():
-            if pathlib.Path(f"layer/{trait_name}/{human_type}/{value}.png").exists():  # parse path by type
-                image_path[trait_name] = f"layer/{trait_name}/{human_type}/{value}.png"
+            # parse path by full type (xx_diamond)
+            if pathlib.Path(f"layer/{trait_name}/{full_type}/{value}.png").exists():
+                image_path[trait_name] = f"layer/{trait_name}/{full_type}/{value}.png"
+            # parse path by type (xx)
+            if pathlib.Path(f"layer/{trait_name}/{gender_type}/{value}.png").exists():
+                image_path[trait_name] = f"layer/{trait_name}/{gender_type}/{value}.png"
                 if f"h_{trait_name}" in image_path:
-                    image_path[f"h_{trait_name}"] = f"layer/{trait_name}/{human_type}/{value}.png"
+                    image_path[f"h_{trait_name}"] = f"layer/{trait_name}/{gender_type}/{value}.png"
+            # if type doesn't exist, get path from common
             elif pathlib.Path(
-                    f"layer/{trait_name}/common/{value}.png").exists():  # if type doesn't exist, get path from common
+                    f"layer/{trait_name}/common/{value}.png").exists():
                 image_path[trait_name] = f"layer/{trait_name}/common/{value}.png"
 
                 if f"h_{trait_name}" in image_path:
                     image_path[f"h_{trait_name}"] = f"layer/h_{trait_name}/common/{value}.png"
             else:  # error
-                print(trait_name, human_type, value, " no")
+                print(trait_name, full_type, gender_type, value, "error")
 
         return image_path
 
@@ -51,7 +57,7 @@ class ImageGenerator:
                 stack = Image.alpha_composite(stack, image_layer)
 
         filter = Image.open(image_layer_path["background"]).convert('RGBA')
-        filter.putalpha(filter.getchannel('A').point(lambda x: x * 0.15))
+        filter.putalpha(filter.getchannel('A').point(lambda x: x * 0.1))
         stack = Image.alpha_composite(stack, filter)
 
         stack = stack.convert('RGB')

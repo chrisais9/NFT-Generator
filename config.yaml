@@ -4,7 +4,7 @@ description: Meta Human Always Fancy
 base_uri: https://ipfs.io/ipfs/Qme42XjH7tBpvqyCqQFoa6UmbXehnRbwk5NDVATCSVQvf3
 
 # Change the seed until a million dollar collection is generated.
-seed: 888
+# seed: 888
 
 start: 1
 
