@@ -4,6 +4,7 @@ import yaml
 from trait_generator import TraitGenerator
 from image_generator import ImageGenerator
 from metadata_generator import MetadataGenerator
+from logger import PerformanceLogger
 
 
 class Generator:
@@ -21,6 +22,8 @@ class Generator:
 
         if "seed" in self.config:
             random.seed(self.config["seed"])
+
+        self.perfLogger = PerformanceLogger()
 
     @staticmethod
     def is_every_trait_unique(traits):
@@ -47,34 +50,41 @@ class Generator:
         plt.close(fig)
 
     def generate(self):
-        print("======= Generate Traits XX Start =======")
+        self.perfLogger.start("Generate Traits XX")
         trait_generator_xx = TraitGenerator(self.config_xx)
         traits_xx = trait_generator_xx.generate()
+        self.perfLogger.log()
 
-        print("======= Generate Traits XY Start =======")
+        self.perfLogger.start("Generate Traits XY")
         trait_generator_xy = TraitGenerator(self.config_xy)
         traits_xy = trait_generator_xy.generate()
+        self.perfLogger.log()
 
         traits = traits_xx + traits_xy
         random.shuffle(traits)
 
-        print("======= Validation Traits Start =======")
+        self.perfLogger.start("Validation Traits")
         if Generator.is_every_trait_unique(traits):
             print("Confirmed that every single trait is unique")
         else:
             print("Error! There are duplicated trait")
             return
+        self.perfLogger.log()
 
+        self.perfLogger.start("Generate Plots")
         Generator.plot_generated_traits("xx", self.config_xx, traits_xx)
         Generator.plot_generated_traits("xy", self.config_xy, traits_xy)
+        self.perfLogger.log()
 
-        print("======= Save Token Metadata Start =======")
+        self.perfLogger.start("Save Token Metadata")
         metadata_generator = MetadataGenerator(self.config)
         metadata_generator.generate(traits)
+        self.perfLogger.log()
 
-        print("======= Generate Images Start =======")
+        self.perfLogger.start("Generate Images Metadata")
         image_generator = ImageGenerator(self.config)
         image_generator.generate(traits)
+        self.perfLogger.log()
 
         # print("======= Upload To IPFS Start =======")
         # uploader = Uploader()
