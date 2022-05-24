@@ -2,7 +2,7 @@ import pathlib
 from PIL import Image
 import multiprocessing
 from multiprocessing import Pool
-
+import tqdm
 import constant
 
 
@@ -17,10 +17,12 @@ class ImageGenerator:
 
         image_path = dict.fromkeys(self.config["order"])
 
-        full_type = trait["type"]
+        full_type = trait[constant.CONFIG_TYPE]
         gender_type = full_type.split("_", 1)[0]
 
         for trait_name, value in trait.items():
+            if trait_name == "token_id":
+                continue
             # parse path by full type (xx_diamond)
             if pathlib.Path(f"layer/{trait_name}/{full_type}/{value}.png").exists():
                 image_path[trait_name] = f"layer/{trait_name}/{full_type}/{value}.png"
@@ -42,7 +44,6 @@ class ImageGenerator:
         return image_path
 
     def merge_image_layer(self, trait):
-        print(f"merge {trait}")
         image_layer_path = self.parse_image_directory(trait)
 
         stack = Image.new('RGBA', (self.width, self.height))
@@ -65,20 +66,16 @@ class ImageGenerator:
         stack = Image.alpha_composite(stack, filter)
 
         stack = stack.convert('RGB')
-        return stack
+
+        stack.save(f'./images/{trait["token_id"]}.jpeg')
 
     def generate(self, traits):
         print(f"multi threading with {multiprocessing.cpu_count()} CPUs")
+
         pool = Pool(processes=multiprocessing.cpu_count())
-        images = pool.map(self.merge_image_layer, traits)
+        for _ in tqdm.tqdm(pool.imap_unordered(self.merge_image_layer, traits), total=len(traits), unit=" image"):
+            pass
         pool.close()
         pool.join()
 
         print("merge images done")
-
-        token_id = 1
-        for image in images:
-            image.save(f'./images/{token_id}.jpeg')
-            print(f"saved {token_id}")
-
-            token_id += 1

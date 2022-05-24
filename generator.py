@@ -71,6 +71,9 @@ class Generator:
             return
         self.perfLogger.log()
 
+        for token_id, trait in enumerate(traits, start=1):
+            trait["token_id"] = token_id
+
         # self.perfLogger.start("Generate Plots")
         # Generator.plot_generated_traits("xx", self.config_xx, traits_xx)
         # Generator.plot_generated_traits("xy", self.config_xy, traits_xy)
@@ -81,10 +84,9 @@ class Generator:
         metadata_generator.generate(traits)
         self.perfLogger.log()
 
-        self.perfLogger.start("Generate Images Metadata")
+        self.perfLogger.start("Generate Images")
         image_generator = ImageGenerator(self.config)
         image_generator.generate(traits)
-        self.perfLogger.log()
 
         # print("======= Upload To IPFS Start =======")
         # uploader = Uploader()
