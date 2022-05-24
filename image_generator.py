@@ -3,6 +3,8 @@ from PIL import Image
 import multiprocessing
 from multiprocessing import Pool
 
+import constant
+
 
 class ImageGenerator:
     def __init__(self, config):
@@ -46,19 +48,19 @@ class ImageGenerator:
         stack = Image.new('RGBA', (self.width, self.height))
 
         for layer, path in image_layer_path.items():
-            if layer == "hair" or layer == "h_hair":
-                if trait["headgear"] == "none":
+            if layer == constant.CONFIG_HAIR or layer == constant.CONFIG_HIDDEN_HAIR:
+                if trait[constant.CONFIG_HEADGEAR] == "none":
                     image_layer = Image.open(path).convert('RGBA')
                     stack = Image.alpha_composite(stack, image_layer)
-            elif layer == "h_headgear_hair":
-                if trait["headgear"] != "none":
+            elif layer == constant.CONFIG_HIDDEN_HEADGEAR_HAIR:
+                if trait[constant.CONFIG_HEADGEAR] != "none":
                     image_layer = Image.open(path).convert('RGBA')
                     stack = Image.alpha_composite(stack, image_layer)
             else:
                 image_layer = Image.open(path).convert('RGBA')
                 stack = Image.alpha_composite(stack, image_layer)
 
-        filter = Image.open(image_layer_path["background"]).convert('RGBA')
+        filter = Image.open(image_layer_path[constant.CONFIG_BACKGROUND]).convert('RGBA')
         filter.putalpha(filter.getchannel('A').point(lambda x: x * 0.1))
         stack = Image.alpha_composite(stack, filter)
 

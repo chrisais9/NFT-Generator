@@ -94,12 +94,26 @@ traits:
   hair:
     wave:
       name: Wave
-      prob: 100
+      prob: 50
+    shortcut:
+      name: Short Cut
+      prob: 50
 
   h_headgear_hair:
     wave:
       name: Wave
-      prob: 100
+      prob: 50
+    shortcut:
+      name: Short Cut
+      prob: 50
+
+  h_hair:
+    wave:
+      name: Wave
+      prob: 50
+    shortcut:
+      name: Short Cut
+      prob: 50
 
   faceAccessories:
     plastic_glasses:
@@ -109,10 +123,6 @@ traits:
       name: None
       prob: 50
 
-  h_hair:
-    wave:
-      name: Wave
-      prob: 100
 
   clothing:
     normal:

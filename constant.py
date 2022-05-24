@@ -1,0 +1,5 @@
+CONFIG_BACKGROUND = "background"
+CONFIG_HIDDEN_HAIR = "h_hair"
+CONFIG_HAIR = "hair"
+CONFIG_HIDDEN_HEADGEAR_HAIR = "h_headgear_hair"
+CONFIG_HEADGEAR = "headgear"
