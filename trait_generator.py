@@ -20,13 +20,10 @@ class TraitGenerator:
 
         traits = self.config["traits"]
         for category in traits.keys():
-            if category == constant.CONFIG_HIDDEN_HAIR:
-                trait[category] = trait[constant.CONFIG_HAIR]
-            else:
-                trait[category] = random.choices(
-                    [k for k in traits[category].keys()],
-                    [v["prob"] for v in traits[category].values()]
-                ).pop()
+            trait[category] = random.choices(
+                [k for k in traits[category].keys()],
+                [v["prob"] for v in traits[category].values()]
+            ).pop()
 
         if trait in self.traits:
             return self._new_random_unique_trait()

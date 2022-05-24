@@ -124,11 +124,6 @@ traits:
       name: None
       prob: 50
 
-  h_hair:
-    wave:
-      name: Wave
-      prob: 100
-
   clothing:
     red:
       name: Normal
