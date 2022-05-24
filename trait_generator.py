@@ -1,5 +1,4 @@
 import random
-import constant
 
 
 class TraitGenerator:
@@ -9,7 +8,6 @@ class TraitGenerator:
 
     def generate(self):
         for i in range(self.config["number"]):
-            print(f"generate {i}")
             new_trait = self._new_random_unique_trait()
             self.traits.append(new_trait)
 

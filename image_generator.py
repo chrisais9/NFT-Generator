@@ -77,5 +77,3 @@ class ImageGenerator:
             pass
         pool.close()
         pool.join()
-
-        print("merge images done")

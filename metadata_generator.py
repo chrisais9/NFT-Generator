@@ -11,7 +11,6 @@ class MetadataGenerator:
             token_metadata = self.generate_token_metadata(trait)
             with open(f'./metadata/{trait["token_id"]}', 'w') as outfile:
                 json.dump(token_metadata, outfile, indent=4)
-            print(f'saved {trait["token_id"]}')
 
     def generate_token_metadata(self, trait):
         return {
