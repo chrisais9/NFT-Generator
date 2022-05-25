@@ -1,167 +1,123 @@
 # Number of unique images you are going to create.
-number: 15
+number: 1000
 
 traits:
   background:
-    gray:
-      name: Gray
+    Gray:
       prob: 40
-    sky_blue:
-      name: Sky Blue
+    Sky Blue:
       prob: 30
-    blue:
-      name: Blue
+    Blue:
       prob: 20
-    purple:
-      name: Purple
+    Purple:
       prob: 10
 
   type:
-    xx:
-      name: XX
+    XX:
       prob: 40
-    xx_brown:
-      name: XX Brown
+    XX Brown:
       prob: 40
-    xx_diamond:
-      name: XX Diamond
+    XX Diamond:
       prob: 20
 
   eyes:
-    emotionless_a:
-      name: Emotionless A
+    Emotionless A:
       prob: 10
-    emotionless_b:
-      name: Emotionless B
+    Emotionless B:
       prob: 10
-    emotionless_c:
-      name: Emotionless C
+    Emotionless C:
       prob: 10
-    dot:
-      name: Dot
+    Dot:
       prob: 10
-    god:
-      name: God
+    God:
       prob: 10
-    odd_eye:
-      name: Odd Eye
+    Odd Eye:
       prob: 10
-    closed:
-      name: Closed
+    Closed:
       prob: 10
-    looking_a:
-      name: Looking A
+    Looking A:
       prob: 10
-    wink:
-      name: Wink
+    Wink:
       prob: 10
-    miso:
-      name: Miso
+    Miso:
       prob: 10
 
   mouth:
-    simple:
-      name: Simple
+    Simple:
       prob: 50
-    miso:
-      name: Miso
+    Miso:
       prob: 50
 
   ear:
-    earrings:
-      name: Earrings
+    Earrings:
       prob: 50
-    none:
-      name: None
+    None:
       prob: 50
 
   neck:
-    tattoo:
-      name: Tattoo
+    Tattoo:
       prob: 30
-    headphone:
-      name: Headphone
+    Headphone:
       prob: 30
-    chocker:
-      name: Chocker
+    Chocker:
       prob: 30
-    none:
-      name: None
+    None:
       prob: 10
 
   mask:
-    meta_mask:
-      name: Meta Mask
+    Meta Mask:
       prob: 30
-    none:
-      name: None
+    None:
       prob: 50
 
   hair:
-    wave:
+    Wave:
       name: Wave
       prob: 50
-    shortcut:
-      name: Short Cut
+    Shortcut:
       prob: 50
 
   h_headgear_hair:
-    wave:
-      name: Wave
+    Wave:
       prob: 50
-    shortcut:
-      name: Short Cut
+    Shortcut:
       prob: 50
 
   faceAccessories:
-    plastic_glasses:
-      name: Plastice Glasses
+    Plastic Glasses:
       prob: 50
-    none:
-      name: None
+    None:
       prob: 50
 
 
   clothing:
-    normal:
-      name: Normal
+    Normal:
       prob: 30
-    fur:
-      name: Fur
+    Fur:
       prob: 25
-    hanbok:
-      name: Hanbok
+    Hanbok:
       prob: 25
-    gray:
-      name: Gray
+    Gray:
       prob: 20
 
   offhand:
-    cigarette:
-      name: Cigarette
+    Cigarette:
       prob: 40
-    bat:
-      name: Bat
+    Bat:
       prob: 30
-    meta_cat:
-      name: Meta Cat
+    Meta Cat:
       prob: 20
-    none:
-      name: None
+    None:
       prob: 10
 
   headgear:
-    cap:
-      name: Cap
+    Cap:
       prob: 50
-    none:
-      name: None
+    None:
       prob: 50
 
   effect:
-    smoke:
-      name: Smoke
+    Smoke:
       prob: 30
-    none:
-      name: None
+    None:
       prob: 70

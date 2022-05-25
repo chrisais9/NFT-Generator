@@ -17,8 +17,8 @@ class ImageGenerator:
 
         image_path = dict.fromkeys(self.config["order"])
 
-        full_type = trait[constant.CONFIG_TYPE]
-        gender_type = full_type.split("_", 1)[0]
+        full_type = trait[constant.CONFIG_TYPE].lower()
+        gender_type = full_type.split(" ", 1)[0]
 
         for trait_name, value in trait.items():
             if trait_name == "token_id":
@@ -41,7 +41,7 @@ class ImageGenerator:
                 if f"h_{trait_name}" in image_path:
                     image_path[f"h_{trait_name}"] = f"layer/h_{trait_name}/common/{value}.png"
             else:  # error
-                print(trait_name, full_type, gender_type, value, "error")
+                print(trait_name, full_type, gender_type, value, "error", sep=" - ")
                 return None
 
         return image_path
