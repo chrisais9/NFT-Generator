@@ -66,14 +66,12 @@ class Generator:
             return
         print("done")
 
-
         # self.perfLogger.start("Generate Plots")
         # Generator.plot_generated_traits("xx", self.config_xx, traits_xx)
         # Generator.plot_generated_traits("xy", self.config_xy, traits_xy)
         # self.perfLogger.log()
 
         print(f"======= Save Token Metadata Start =======")
-
         for token_id, trait in enumerate(traits, start=1):
             trait["token_id"] = token_id
 

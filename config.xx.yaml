@@ -1,5 +1,5 @@
 # Number of unique images you are going to create.
-number: 100
+number: 15
 
 traits:
   background:
@@ -76,12 +76,18 @@ traits:
       prob: 50
 
   neck:
+    tattoo:
+      name: Tattoo
+      prob: 30
+    headphone:
+      name: Headphone
+      prob: 30
     chocker:
       name: Chocker
-      prob: 50
+      prob: 30
     none:
       name: None
-      prob: 50
+      prob: 10
 
   mask:
     meta_mask:
@@ -119,13 +125,16 @@ traits:
   clothing:
     normal:
       name: Normal
-      prob: 40
+      prob: 30
+    fur:
+      name: Fur
+      prob: 25
     hanbok:
       name: Hanbok
-      prob: 30
+      prob: 25
     gray:
-      name: Hanbok
-      prob: 30
+      name: Gray
+      prob: 20
 
   offhand:
     cigarette:

@@ -26,11 +26,13 @@ class ImageGenerator:
             # parse path by full type (xx_diamond)
             if pathlib.Path(f"layer/{trait_name}/{full_type}/{value}.png").exists():
                 image_path[trait_name] = f"layer/{trait_name}/{full_type}/{value}.png"
+                if f"h_{trait_name}" in image_path:
+                    image_path[f"h_{trait_name}"] = f"layer/h_{trait_name}/{full_type}/{value}.png"
             # parse path by type (xx)
-            if pathlib.Path(f"layer/{trait_name}/{gender_type}/{value}.png").exists():
+            elif pathlib.Path(f"layer/{trait_name}/{gender_type}/{value}.png").exists():
                 image_path[trait_name] = f"layer/{trait_name}/{gender_type}/{value}.png"
                 if f"h_{trait_name}" in image_path:
-                    image_path[f"h_{trait_name}"] = f"layer/{trait_name}/{gender_type}/{value}.png"
+                    image_path[f"h_{trait_name}"] = f"layer/h_{trait_name}/{gender_type}/{value}.png"
             # if type doesn't exist, get path from common
             elif pathlib.Path(
                     f"layer/{trait_name}/common/{value}.png").exists():
@@ -40,12 +42,13 @@ class ImageGenerator:
                     image_path[f"h_{trait_name}"] = f"layer/h_{trait_name}/common/{value}.png"
             else:  # error
                 print(trait_name, full_type, gender_type, value, "error")
+                return None
 
         return image_path
 
     def merge_image_layer(self, trait):
-        image_layer_path = self.parse_image_directory(trait)
 
+        image_layer_path = self.parse_image_directory(trait)
         stack = Image.new('RGBA', (self.width, self.height))
 
         for layer, path in image_layer_path.items():
@@ -53,10 +56,14 @@ class ImageGenerator:
                 if trait[constant.CONFIG_HEADGEAR] == "none":
                     image_layer = Image.open(path).convert('RGBA')
                     stack = Image.alpha_composite(stack, image_layer)
+                else:
+                    pass
             elif layer == constant.CONFIG_HIDDEN_HEADGEAR_HAIR:
                 if trait[constant.CONFIG_HEADGEAR] != "none":
                     image_layer = Image.open(path).convert('RGBA')
                     stack = Image.alpha_composite(stack, image_layer)
+                else:
+                    pass
             else:
                 image_layer = Image.open(path).convert('RGBA')
                 stack = Image.alpha_composite(stack, image_layer)

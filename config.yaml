@@ -20,12 +20,14 @@ order:
   - type
   - eyes
   - mouth
-  - neck
+  - h_neck
   - mask
   - hair
   - h_headgear_hair
   - faceAccessories
   - ear
+  - h_clothing
+  - neck
   - clothing
   - offhand
   - headgear
