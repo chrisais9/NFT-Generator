@@ -5,6 +5,11 @@
   <p align="center">Authored by Koo Hyong Mo</p>
 </div>
 
+## Prerequisites
+- Python 3.8
+- PyCharm 2021.3.3 (Professional Edition)
+- Dependencies in requirements.txt
+
 ## Settings
 아래 파일들을 다음 포맷에 맞도록 모두 준비한다.
 
@@ -53,28 +58,22 @@ number: 10
 
 traits:
   background:
-    gray:
-      name: Gray
+    Gray:
       prob: 40
-    sky_blue:
-      name: Sky Blue
+    Sky Blue:
       prob: 30
-    blue:
-      name: Blue
+    Blue:
       prob: 20
-    purple:
-      name: Purple
+    Purple:
       prob: 10
     .
     .
     .
     
   effect:
-    smoke:
-      name: Smoke
+    Smoke:
       prob: 30
-    none:
-      name: None
+    None:
       prob: 70
 ```
 
@@ -117,8 +116,12 @@ layer
 
 1. 타입별 Trait 생성
 2. 각 Trait의 무결성 검증
-3. /metadata에 메타데이터 저장
-4. Trait 기반으로 이미지 생성후 /images에 저장
+3. `metadata` 폴더에 메타데이터 저장
+4. Trait 기반으로 이미지 생성후 `images` 폴더에 저장
+
+> multiprocessing 기능을 통해 컴퓨터의 CPU 갯수에 비례하여 빠른 속도로 이미지를 생성할 수 있음.
+> 
+> see `image-generator.py` for further information
 
 ### uploader.py
 

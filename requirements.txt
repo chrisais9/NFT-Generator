@@ -1,0 +1,6 @@
+matplotlib==3.5.2
+Pillow==9.1.0
+python-dotenv==0.20.0
+PyYAML==6.0
+requests==2.27.1
+tqdm==4.64.0
