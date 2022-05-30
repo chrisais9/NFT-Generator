@@ -53,13 +53,13 @@ class ImageGenerator:
 
         for layer, path in image_layer_path.items():
             if layer == constant.CONFIG_HAIR or layer == constant.CONFIG_HIDDEN_HAIR:
-                if trait[constant.CONFIG_HEADGEAR] == "none":
+                if trait[constant.CONFIG_HEADGEAR] == constant.CONFIG_VALUE_NONE:
                     image_layer = Image.open(path).convert('RGBA')
                     stack = Image.alpha_composite(stack, image_layer)
                 else:
                     pass
             elif layer == constant.CONFIG_HIDDEN_HEADGEAR_HAIR:
-                if trait[constant.CONFIG_HEADGEAR] != "none":
+                if trait[constant.CONFIG_HEADGEAR] != constant.CONFIG_VALUE_NONE:
                     image_layer = Image.open(path).convert('RGBA')
                     stack = Image.alpha_composite(stack, image_layer)
                 else:
@@ -73,8 +73,7 @@ class ImageGenerator:
         stack = Image.alpha_composite(stack, filter)
 
         stack = stack.convert('RGB')
-
-        stack.save(f'./images/{trait["token_id"]}.jpeg')
+        stack.save(f'./images/{trait["token_id"]}.png')
 
     def generate(self, traits):
         print(f"multi threading with {multiprocessing.cpu_count()} CPUs")

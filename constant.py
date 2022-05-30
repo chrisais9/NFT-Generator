@@ -4,3 +4,5 @@ CONFIG_HAIR = "hair"
 CONFIG_HIDDEN_HEADGEAR_HAIR = "h_headgear_hair"
 CONFIG_HEADGEAR = "headgear"
 CONFIG_TYPE = "type"
+
+CONFIG_VALUE_NONE = "None"

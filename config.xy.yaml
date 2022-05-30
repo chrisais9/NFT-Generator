@@ -1,5 +1,5 @@
 # Number of unique images you are going to create.
-number: 1000
+number: 10
 
 traits:
   background:

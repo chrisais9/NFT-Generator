@@ -22,10 +22,10 @@ class MetadataGenerator:
                 continue
 
             if trait_type == constant.CONFIG_HIDDEN_HEADGEAR_HAIR:
-                if trait[constant.CONFIG_HEADGEAR] != "none":
+                if trait[constant.CONFIG_HEADGEAR] != constant.CONFIG_VALUE_NONE:
                     attributes.append({"trait_type": constant.CONFIG_HAIR, "value": value})
             elif trait_type == constant.CONFIG_HAIR:
-                if trait[constant.CONFIG_HEADGEAR] == "none":
+                if trait[constant.CONFIG_HEADGEAR] == constant.CONFIG_VALUE_NONE:
                     attributes.append({"trait_type": trait_type, "value": value})
             else:
                 attributes.append({"trait_type": trait_type, "value": value})
