@@ -72,7 +72,6 @@ class ImageGenerator:
         filter.putalpha(filter.getchannel('A').point(lambda x: x * 0.1))
         stack = Image.alpha_composite(stack, filter)
 
-        stack = stack.convert('RGB')
         stack.save(f'./images/{trait["token_id"]}.png')
 
     def generate(self, traits):
