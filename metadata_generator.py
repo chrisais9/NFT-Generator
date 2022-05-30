@@ -1,6 +1,7 @@
 import json
-
+import shutil
 import constant
+import os
 
 
 class MetadataGenerator:
@@ -8,6 +9,10 @@ class MetadataGenerator:
         self.config = config
 
     def generate(self, traits):
+
+        shutil.rmtree('./metadata/')
+        os.makedirs('./metadata/')
+
         for trait in traits:
             token_metadata = self.generate_token_metadata(trait)
 

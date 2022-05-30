@@ -3,7 +3,9 @@ from PIL import Image
 import multiprocessing
 from multiprocessing import Pool
 import tqdm
+import shutil
 import constant
+import os
 
 
 class ImageGenerator:
@@ -75,6 +77,10 @@ class ImageGenerator:
         stack.save(f'./images/{trait["token_id"]}.png')
 
     def generate(self, traits):
+
+        shutil.rmtree('./metadata/')
+        os.makedirs('./metadata/')
+
         print(f"multi threading with {multiprocessing.cpu_count()} CPUs")
 
         pool = Pool(processes=multiprocessing.cpu_count())
