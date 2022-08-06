@@ -5,6 +5,10 @@
   <p align="center">Authored by Koo Hyong Mo</p>
 </div>
 
+> multiprocessing 기능을 통해 컴퓨터의 CPU 갯수에 비례하여 싱글스레드 대비 X10속도로 이미지를 생성할 수 있음.
+> 
+> see `image-generator.py` for further information
+
 ## Prerequisites
 - Python 3.8
 - PyCharm 2021.3.3 (Professional Edition)
@@ -119,9 +123,6 @@ layer
 3. `metadata` 폴더에 메타데이터 저장
 4. Trait 기반으로 이미지 생성후 `images` 폴더에 저장
 
-> multiprocessing 기능을 통해 컴퓨터의 CPU 갯수에 비례하여 빠른 속도로 이미지를 생성할 수 있음.
-> 
-> see `image-generator.py` for further information
 
 ### uploader.py
 
