@@ -1,5 +1,5 @@
 <div align="center">
-<img width="300" src="https://www.mhaf.io/assets/icons/mhaf_full_black.svg"/>
+<img width="500" src="https://github.com/chrisais9/nft-generator/blob/master/header.png"/>
   <h2 align="center">NFT generator</h2>
   <p align="center">Gently crafted for MHAF</p>
   <p align="center">Authored by Koo Hyong Mo</p>
